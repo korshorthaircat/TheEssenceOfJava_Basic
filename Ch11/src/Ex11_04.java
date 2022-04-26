@@ -12,7 +12,7 @@ class Ex11_04 {
 	public static void main(String[] args) {
 		System.out.println("help를 입력하면 도움말을 볼 수 있습니다.");
 		
-		while(true) {
+		while(true) { //무한반복문을 통해 계속 입력을 받음 
 			System.out.print(">>");
 			
 			try {
@@ -20,27 +20,31 @@ class Ex11_04 {
 				Scanner s = new Scanner(System.in);
 				String input = s.nextLine().trim(); //입력 받은 것을 앞뒤 공백 제거하여 문자열 input에 저장
 				
-				if("".equals(input)) continue; //while(true)의 처음으로 돌아간다.
+				if("".equals(input)) continue; //입력한 내용이 없다면 while(true)의 처음으로 돌아간다.
 				
 				if(input.equalsIgnoreCase("q")) {  
 					System.exit(0); //프로그램을 종료함 
 				
-				} else if(input.equalsIgnoreCase("help")) { 
+				} else if(input.equalsIgnoreCase("help")) { //대소문자를 구분하지 않
 					System.out.println(" help - 도움말을 보여줍니다.");
 					System.out.println(" q 또는 Q - 프로그램을 종료합니다.");
 					System.out.println(" history - 최근에 입력한 명령어를 " + MAX_SIZE + "개 보여줍니다.");
 				
 				} else if(input.equalsIgnoreCase("history")) {
-					int i = 0;
 					save(input); //입력받은 명령어를 저장하고,
 					
 					//LinkedList의 내용을 보여준다.
-					LinkedList tmp = (LinkedList)q;
-					ListIterator it = tmp.listIterator();
+					LinkedList list = (LinkedList)q;
 					
-					while(it.hasNext())
-						System.out.println(++i+"."+it.next());	
+					final int SIZE = list.size();
+					for(int i=0; i<SIZE; i++)
+						System.out.println((i+1)+"."+list.get(i)); //모든 요소를 루프 돌면서 번호 붙여서 get(i)로 보여줌
 					
+//					ListIterator it = list.listIterator();
+//					
+//					while(it.hasNext())
+//						System.out.println(++i+"."+it.next());	
+//					
 				} else {
 					save(input);
 					System.out.println(input);
@@ -56,12 +60,12 @@ class Ex11_04 {
 	
 	public static void save(String input) {
 		//queue에 저장한다
-		if(!"".equals(input))
-			q.offer(input);
+		if(!"".equals(input)) //if(input!=null && !input.equals(""))을 간단히 쓰기 위한 조건문 
+			q.offer(input); //빈 문자열이 아닐 때 저장함 
 		
 		//queue의 최대 크기를 넘으면 제일 처음 입력된 것을 삭제한다.
 		if(q.size() > MAX_SIZE) //size()는 Collection인터페이스에 정의 
-			q.remove();
+			q.poll();
 	}
 
 } 

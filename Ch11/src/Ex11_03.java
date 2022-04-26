@@ -7,7 +7,7 @@ public class Ex11_03 {
 	public static void main(String[] args) {
 
 		if (args.length != 1) {
-			System.out.println("Usage: java Ex11_03 \"EXPRESSION\""); //프로그램의 사용법법을 알려준다. 프로그램을 실행할 매개변수에 검사하자 하는 식을 넣어야 한다. 
+			System.out.println("Usage: java Ex11_03 \"EXPRESSION\""); //프로그램의 사용법법을 알려준다. 프로그램을 실행할 매개변수에 검사하고자 하는 식을 넣어야 한다. 
 			System.out.println("Example: java Ex11_03 \"((2+3)*1+3\"");
 			System.exit(0);
 		}
@@ -30,13 +30,13 @@ public class Ex11_03 {
 			}
 			
 				
-			if (st.isEmpty()) { //만일 스택이 비어있다면, 여는 소괄호와 닫는 소괄호의 쌍이 맞아 괄호가 잘 닫다는 의미이다.
+			if (st.isEmpty()) { //만일 스택이 비어있다면, 여는 소괄호와 닫는 소괄호의 쌍이 맞아 괄호가 잘 닫혀 있다는 의미이다.
 				System.out.println("괄호가 일치합니다.");
 			} else {
 				System.out.println("괄호가 일치하지 않습니다.");
 			}
 			
-		} catch (EmptyStackException e) { //스택이 비어있는데도 닫는 소괄호'('를 만나서 여는 소괄호'('를 꺼내려 하는 경우 
+		} catch (EmptyStackException e) { //스택이 비어있는데도 닫는 소괄호')'를 만나서 여는 소괄호'('를 꺼내려 하는 경우 
 			System.out.println("괄호가 일치하지 않습니다.");
 		} //try-catch의 끝 
 	}
